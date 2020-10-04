@@ -39,7 +39,7 @@ export function createNodeAsap({
         });
 
         const ready = () => {
-            if (document.readyState !== 'complete') {
+            if (document.readyState !== 'complete' && document.readyState !== 'interactive') {
                 return;
             }
 
@@ -53,7 +53,7 @@ export function createNodeAsap({
             observer.disconnect();
         };
 
-        if (document.readyState === 'complete') {
+        if (document.readyState === 'complete' || document.readyState!== 'interactive') {
             ready();
         } else {
             document.addEventListener('readystatechange', ready);
